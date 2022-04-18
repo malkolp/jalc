@@ -1,0 +1,23 @@
+@media only screen and (min-width: 480px) {
+    .hero-pic {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .hero-pic {
+        width: 65%;
+    }
+}
+
+@media only screen and (min-width: 840px) {
+    .hero-pic {
+        width: 45%;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .hero-pic {
+        width: 30%;
+    }
+}
