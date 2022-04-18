@@ -88,7 +88,68 @@
 </section>
 <section data-page="launch-default">
     <div class="app-section">
-
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title border-bottom text-capitalize text-center pb-1">Your Profile</h4>
+                <div>
+                    <div class="mt-3">
+                        <label for="f-d-name" class="d-block small text-muted">Name</label>
+                        <input id="f-d-name" type="text" class="form-control form-control-sm" placeholder="name">
+                    </div>
+                    <div class="mt-3">
+                        <label for="f-d-placeOfBirth" class="d-block small text-muted">Place / date of birth</label>
+                        <div class="d-flex flex-row">
+                            <div class="flex-grow-0 mr-3" style="width: 40%">
+                                <input id="f-d-placeOfBirth" type="text" class="form-control form-control-sm" placeholder="place">
+                            </div>
+                            <div class="flex-grow-1">
+                                <input type="date" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <label for="f-d-gender" class="d-block small text-muted">Gender</label>
+                        <select id="f-d-gender" class="form-control form-control-sm">
+                            <option value="laki-laki" selected>Male</option>
+                            <option value="perempuan">Female</option>
+                        </select>
+                    </div>
+                    <div class="mt-3">
+                        <label for="f-d-education" class="d-block small text-muted">Education background</label>
+                        <select id="f-d-education" class="form-control form-control-sm">
+                            <option value="1">Elementary School</option>
+                            <option value="2">Junior High School</option>
+                            <option value="3" selected>Senior High School</option>
+                            <option value="4">Diploma</option>
+                            <option value="5">Bachelor</option>
+                            <option value="6">Master</option>
+                            <option value="7">Doctoral</option>
+                        </select>
+                    </div>
+                    <div id="f-d-majoring-panel" class="mt-3">
+                        <label for="f-d-majoring" class="d-block small text-muted">Majoring</label>
+                        <input id="f-d-majoring" type="text" class="form-control form-control-sm" placeholder="majoring">
+                    </div>
+                    <div class="mt-3">
+                        <label for="f-d-address" class="d-block small text-muted">Address</label>
+                        <input id="f-d-address" type="text" class="form-control form-control-sm" placeholder="address">
+                    </div>
+                    <div class="mt-3">
+                        <label for="f-d-phone" class="d-block small text-muted">Phone</label>
+                        <input id="f-d-phone" type="text" class="form-control form-control-sm" placeholder="phone number">
+                    </div>
+                    <div class="d-flex flex-row mt-3 pt-5 border-top">
+                        <div class="flex-grow-0">
+                            <button class="app-btn app-btn-secondary small">Cancel</button>
+                        </div>
+                        <div class="flex-grow-1"></div>
+                        <div class="flex-grow-0">
+                            <button class="app-btn app-btn-info small">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 <section data-page="launch-stylish">
@@ -129,6 +190,13 @@
 
 <script src="js/main.js"></script>
 <script src="js/app.js"></script>
+
+<script>
+    //for testing purpose
+    setTimeout(()=>{
+        page_switcher.focus('launch-default');
+    },1000);
+</script>
 
 </body>
 </html>

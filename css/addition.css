@@ -1,23 +1,72 @@
 .app-section {
+    margin-top: 80px;
     display: flex;
     width: 100%;
     flex-direction: row;
     min-height: 200px;
+    justify-content: center;
+    align-items: center;
 }
 
+.app-btn {
+    cursor: pointer;
+    padding: 5px 8px;
+    text-align: center;
+    min-width: 80px;
+    border-radius: 3px;
+}
+
+.app-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.app-btn-secondary {
+    color: #17202A;
+    background-color: white;
+    border: solid 1px #CACFD2;
+}
+
+.app-btn-secondary:active {
+    color: #17202A;
+    background-color: #CACFD2;
+    border: solid 1px #CACFD2;
+}
+
+.app-btn-info {
+    color: white;
+    background-color: #58D68D;
+    border: solid 1px #58D68D;
+}
+
+.app-btn-info:active {
+    color: #58D68D;
+    background-color: white;
+    border: solid 1px #58D68D;
+}
+
+@media only screen and (min-width: 240px) {
+    .app-section {min-height: 320px;margin-top: 0;}
+    .app-section .card {width: 100%;}
+    .hero-pic {width: 100%;}
+}
 @media only screen and (min-width: 480px) {
-    .app-section {min-height: 320px;}
+    .app-section {min-height: 320px;margin-top: 80px;}
+    .app-section .card {width: 90%;}
     .hero-pic {width: 100%;}
 }
 @media only screen and (min-width: 600px) {
-    .app-section {min-height: 360px;}
+    .app-section {min-height: 360px;margin-top: 80px;}
+    .app-section .card {width: 75%;}
     .hero-pic {width: 65%;}
 }
 @media only screen and (min-width: 840px) {
-    .app-section {min-height: 420px;}
+    .app-section {min-height: 420px;margin-top: 80px;}
+    .app-section .card {width: 50%;}
     .hero-pic {width: 45%;}
 }
 @media only screen and (min-width: 1000px) {
-    .app-section {min-height: 480px;}
+    .app-section {min-height: 480px;margin-top: 80px;}
+    .app-section .card {width: 35%;}
     .hero-pic {width: 30%;}
 }
