@@ -1,0 +1,22 @@
+body {
+    background-color: #F2F3F4;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.canvas {
+    padding: 5rem 0 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    overflow: auto;
+    zoom: 0.7;
+}
+
+.paper {
+    box-shadow: 0 9px 9px -5px #D5D8DC;
+}
