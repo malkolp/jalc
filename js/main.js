@@ -134,7 +134,8 @@ jQuery(document).ready(function( $ ) {
 
     // custom code
     page_switcher.set('main');
-    page_switcher.set('test-1');
-    page_switcher.set('test-2');
+    page_switcher.set('launch-default');
+    page_switcher.set('launch-stylish');
+    page_switcher.set('launch-timeline');
     page_switcher.focus('main');
 });

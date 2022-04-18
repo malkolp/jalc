@@ -1,23 +1,23 @@
+.app-section {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    min-height: 200px;
+}
+
 @media only screen and (min-width: 480px) {
-    .hero-pic {
-        width: 100%;
-    }
+    .app-section {min-height: 320px;}
+    .hero-pic {width: 100%;}
 }
-
 @media only screen and (min-width: 600px) {
-    .hero-pic {
-        width: 65%;
-    }
+    .app-section {min-height: 360px;}
+    .hero-pic {width: 65%;}
 }
-
 @media only screen and (min-width: 840px) {
-    .hero-pic {
-        width: 45%;
-    }
+    .app-section {min-height: 420px;}
+    .hero-pic {width: 45%;}
 }
-
 @media only screen and (min-width: 1000px) {
-    .hero-pic {
-        width: 30%;
-    }
+    .app-section {min-height: 480px;}
+    .hero-pic {width: 30%;}
 }
