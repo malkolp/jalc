@@ -19,6 +19,13 @@
 
             return $();
         },
+        refresh             : (pageId, ins_=page_switcher)=>{
+            const onFocus   = ins_.focused !== undefined && ins_.memory[pageId] === ins_.focused;
+            const x         = ins_.set(pageId);
+
+            if (onFocus)
+                x.removeClass('d-none');
+        },
         focus               : (pageId, memory=page_switcher.memory, y=page_switcher.focused)=>{
             const x         = memory[pageId];
             if (x !== undefined) {
