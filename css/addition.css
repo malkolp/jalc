@@ -45,6 +45,10 @@
     border: solid 1px #58D68D;
 }
 
+.app-btn-icon {
+    cursor: pointer;
+}
+
 .app-btn-text {
     cursor: pointer;
     color: #808B96;
