@@ -137,5 +137,7 @@ jQuery(document).ready(function( $ ) {
     page_switcher.set('launch-default');
     page_switcher.set('launch-stylish');
     page_switcher.set('launch-timeline');
+    page_switcher.set('page-default-2');
+    page_switcher.set('page-default-3');
     page_switcher.focus('main');
 });

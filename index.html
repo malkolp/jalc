@@ -147,11 +147,51 @@
                     </div>
                     <div class="d-flex flex-row mt-3 pt-5 border-top">
                         <div class="flex-grow-0">
-                            <button class="app-btn app-btn-secondary small">Cancel</button>
+                            <button id="f-d-act-cancel" class="app-btn app-btn-secondary small">Cancel</button>
                         </div>
                         <div class="flex-grow-1"></div>
                         <div class="flex-grow-0">
-                            <button class="app-btn app-btn-info small">Next</button>
+                            <button id="f-d-act-next-1" class="app-btn app-btn-info small">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section data-page="page-default-2">
+    <div class="app-section">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title border-bottom text-capitalize text-center pb-1">Your Attachments</h4>
+                <div>
+                    <div class="d-flex flex-row mt-3 pt-5 border-top">
+                        <div class="flex-grow-0">
+                            <button id="f-d-act-prev-1" class="app-btn app-btn-secondary small">Previous</button>
+                        </div>
+                        <div class="flex-grow-1"></div>
+                        <div class="flex-grow-0">
+                            <button id="f-d-act-next-2" class="app-btn app-btn-info small">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section data-page="page-default-3">
+    <div class="app-section">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title border-bottom text-capitalize text-center pb-1">Target Company</h4>
+                <div>
+                    <div class="d-flex flex-row mt-3 pt-5 border-top">
+                        <div class="flex-grow-0">
+                            <button id="f-d-act-prev-2" class="app-btn app-btn-secondary small">Previous</button>
+                        </div>
+                        <div class="flex-grow-1"></div>
+                        <div class="flex-grow-0">
+                            <button id="f-d-act-generate" class="app-btn app-btn-info small">Generate</button>
                         </div>
                     </div>
                 </div>
@@ -194,16 +234,10 @@
 
 <script src="contactform/contactform.js"></script>
 <script src="page-switcher.js"></script>
+<script src="js/form_.js"></script>
 
 <script src="js/main.js"></script>
 <script src="js/app.js"></script>
-
-<script>
-    //for testing purpose
-    setTimeout(()=>{
-        page_switcher.focus('launch-default');
-    },1000);
-</script>
 
 </body>
 </html>
