@@ -1307,7 +1307,7 @@ body.mobile-nav-active #mobile-nav-toggle i {
 # Footer
 --------------------------------------------------------------*/
 .footer {
-  padding-top: 50px;
+  padding-top: 0;
 }
 
 .footer .footer-logo .navbar-brand {
