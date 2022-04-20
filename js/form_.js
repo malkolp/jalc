@@ -26,6 +26,36 @@
                     i.pass          = pass;
                 });
             },
+            image           : i=>{
+                const   e           = i.ui,
+                        e_ui_ctr    = i.ctr,
+                        e_prv_ctr   = i.prv.ctr,
+                        e_prv_img   = i.prv.img,
+                        e_prv_del   = i.prv.del,
+                        reader      = new FileReader();
+
+                e_prv_ctr.addClass('d-none');
+                e_prv_del.click(()=>{
+                    i.val           = undefined;
+                    i.pass          = false;
+                    e_prv_img[0].setAttribute('src', '');
+                    e_prv_ctr.addClass('d-none');
+                    e_ui_ctr.removeClass('d-none');
+                });
+                $(e).change(()=>{
+                    const file      = e.files[0];
+
+                    if (file !== undefined)
+                        reader.readAsDataURL(file);
+                });
+                reader.addEventListener('load', ()=>{
+                    i.val           = reader.result;
+                    i.pass          = true;
+                    e_prv_img[0].setAttribute('src', reader.result);
+                    e_prv_ctr.removeClass('d-none');
+                    e_ui_ctr.addClass('d-none');
+                });
+            },
             none            : i=>{
                 i.pass      = true;
                 $(i.ui).change(()=>{
@@ -220,6 +250,7 @@
                         const lab   = factory.normalizeLabel('new form', x);
                         const i     = {
                             id      : nid,
+                            group   : p.group,
                             label   : lab,
                             ui      : factory.createForm(kid,lab),
                             type    : 'text',
