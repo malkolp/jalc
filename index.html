@@ -165,6 +165,12 @@
             <div class="card-body">
                 <h4 class="card-title border-bottom text-capitalize text-center pb-1">Your Attachments</h4>
                 <div>
+                    <div id="f-d-attachment-anchor" class="mt-4">
+                        <div id="f-d-attachment-add-form" class="app-btn-text">
+                            <i class="fa fa-plus"></i>
+                            <span>add form</span>
+                        </div>
+                    </div>
                     <div class="d-flex flex-row mt-3 pt-5 border-top">
                         <div class="flex-grow-0">
                             <button id="f-d-act-prev-1" class="app-btn app-btn-secondary small">Previous</button>
@@ -185,6 +191,41 @@
             <div class="card-body">
                 <h4 class="card-title border-bottom text-capitalize text-center pb-1">Target Company</h4>
                 <div>
+                    <div class="mt-3">
+                        <label for="f-d-companyName" class="d-block small text-muted">Company name</label>
+                        <input id="f-d-companyName" type="text" class="form-control form-control-sm" placeholder="company name">
+                    </div>
+                    <div class="mt-3">
+                        <label for="f-d-applyPosition" class="d-block small text-muted">Apply for position</label>
+                        <input id="f-d-applyPosition" type="text" class="form-control form-control-sm" placeholder="position">
+                    </div>
+                    <div class="mt-3">
+                        <label for="f-d-placeOfApply" class="d-block small text-muted">Place / date of apply</label>
+                        <div class="d-flex flex-row">
+                            <div class="flex-grow-0 mr-3" style="width: 40%">
+                                <input id="f-d-placeOfApply" type="text" class="form-control form-control-sm" placeholder="place">
+                            </div>
+                            <div class="flex-grow-1">
+                                <label for="f-d-dateOfApply" class="d-none"></label>
+                                <input id="f-d-dateOfApply" type="date" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <label for="f-d-signature" class="d-block small text-muted">Signature</label>
+                        <div id="f-d-signature-prev-ctr" class="img-previewer">
+                            <div class="position-absolute">
+                                <button id="f-d-signature-del" class="app-btn app-btn-danger small">Delete</button>
+                            </div>
+                            <div>
+                                <img id="f-d-signature-prev" src="" alt="">
+                            </div>
+                        </div>
+                        <div id="f-d-signature-ui-ctr" class="custom-file small">
+                            <label for="f-d-signature" class="custom-file-label">browse file</label>
+                            <input id="f-d-signature" type="file" accept="image/*" class="custom-file-input">
+                        </div>
+                    </div>
                     <div class="d-flex flex-row mt-3 pt-5 border-top">
                         <div class="flex-grow-0">
                             <button id="f-d-act-prev-2" class="app-btn app-btn-secondary small">Previous</button>
