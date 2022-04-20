@@ -50,12 +50,43 @@
             const tps_      = ins_.templates;
 
             tps_[t.id]      = {
-                replacements    : t.replacements,
-                joins           : t.joins,
                 generate        : d=>{
+                    const inp   = {...d.outputs};
+                    const grp   = {...d.groups};
+                    const out_g = {};
+
                     //replace inputs value
+                    t.replacements.forEach(r=>{
+                        inp[r.input]    = r.replace(inp[r.input]);
+                    });
+
                     //create new input by joining multiple inputs
+                    t.joins.forEach(j=>{
+                        let p       = j.pattern;
+                        const i     = j.inputs;
+                        const l     = j.label;
+
+                        i.forEach((e, idx)=>{
+                            p       = p.replace('##'+ idx + '##', inp[e]);
+                        });
+
+                        inp[l]      = p;
+                    });
+
                     //parse group of inputs
+                    t.grouping.forEach(g=>{
+                        const gr_   = g.group;
+                        const trans = g.trans;
+                        const arr   = grp[gr_];
+                        let output  = '';
+
+                        arr.forEach(i=>{
+                            output += trans(inp[i], i);
+                        });
+
+                        out_g[gr_] = output;
+                    });
+
                     //set into templates
                 },
             };
