@@ -58,6 +58,7 @@
             },
             none            : i=>{
                 i.pass      = true;
+                i.val       = i.ui.value;
                 $(i.ui).change(()=>{
                     i.val   = i.ui.value;
                 });
@@ -228,15 +229,22 @@
                 };
                 x.getData       = ()=>{
                     const out   = {};
+                    const grp   = {};
 
                     x.forEach(i=>{
                         if (i.depend === undefined)
                             out[i.label] = i.val;
                         else if (i.pass && i.depend.condition(i.depend.to.ui.value))
                             out[i.label] = i.val;
+                        if (grp[i.group] === undefined)
+                            grp[i.group] = [];
+                        grp[i.group].push(i.label);
                     });
 
-                    return out;
+                    return {
+                        outputs : out,
+                        groups  : grp,
+                    };
                 };
 
                 for (let key in panes) {
