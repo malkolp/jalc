@@ -72,7 +72,7 @@
         tpl         : {
             replacements    : [
                 {
-                    inputs  : 'pendidikan terakhir',
+                    input   : 'pendidikan terakhir',
                     replace : x=>{
                         return switches_.switches['education'](x);
                     },
@@ -98,8 +98,14 @@
             grouping        : [
                 {
                     group   : 'cst-profile',
-                    trans   : (l, v)=>{
+                    trans   : (v, l)=>{
                         return '<tr><td>'+l+'</td><td>:</td><td>'+v+'</td></tr>';
+                    },
+                },
+                {
+                    group   : 'attachment',
+                    trans   : v=>{
+                        return '<li>'+v+'</li>';
                     },
                 },
             ],
