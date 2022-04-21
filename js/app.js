@@ -65,9 +65,12 @@
         page_switcher.focus('page-default-3');
     });
     $('#f-d-act-generate').click(()=>{
-        console.log(form.forms['f-d'].getData());
+        gen_def.generate(form_default.getData());
+        setTimeout(()=>{
+            gen_def.print();
+        },500);
     });
-    generator_.setTemplate({
+    const gen_def       = generator_.setTemplate({
         id          : 'f-d',
         tpl         : {
             replacements    : [
@@ -109,9 +112,20 @@
                     },
                 },
             ],
+            template        : [
+                i=>{
+                    return '<div class="head flex flex-row"><div class="flex-grow-1"><br></div><div class="flex flex-col flex-grow-0"><div class="flex-grow-0">'+i['tempat/ tanggal pengajuan']+'</div><div class="flex-grow-0"><br></div><div class="flex-grow-0">Kepada Yth :</div><div class="flex-grow-0">Pimpinan HRD '+i['nama perusahaan']+'</div><div class="flex-grow-0"><br></div><div class="flex-grow-0">Di Tempat,</div></div></div>';
+                },
+                (i, g)=>{
+                    return '<div class="flex flex-col flex-grow-0"><div class="flex-grow-0">Saya yang bertanda tangan di bawah ini,</div><div class="flex-grow-0"><br></div><div class="ml-2"><table class="w-100"><tbody><tr><td>Nama</td><td>:</td><td>'+i['nama']+'</td></tr><tr><td>Tempat, tanggal lahir</td><td>:</td><td>'+i['tempat/ tanggal lahir']+'</td></tr><tr><td>Jenis kelamin</td><td>:</td><td>'+i['jenis kelamin']+'</td></tr><tr><td>Pendidikan terakhir</td><td>:</td><td>'+i['pendidikan terakhir']+'</td></tr><tr><td>Alamat</td><td>:</td><td>'+i['alamat']+'</td></tr><tr><td>Nomor Telepon/HP</td><td>:</td><td>'+i['nomor telepon']+'</td></tr>'+g['cst-profile']+'</tbody></table></div></div><div class="flex-grow-0"><br></div>';
+                },
+                (i, g)=>{
+                    return '<div class="flex-grow-0">Dengan ini menyampaikan permohonan kepada bapak/ibu, agar kiranya dapat menjadikansaya sebagai karyawan di perusahaan yang bapak/ibu kelola sebagai '+i['posisi']+'.</div><div class="flex-grow-0"><br></div><div class="flex-grow-0">Sebagai bahan pertimbangan bapak/ibu, bersama ini saya lampirkan:</div><div class="flex-grow-0 ml-2"><ol class="pl-1">'+g['attachment']+'</ol></div><div class="flex-grow-0">Demikian surat lamaran ini saya sampaikan, besar harapan saya agar bapak/ibudapat mempertimbangkannya, atas perhatiannya saya ucapkan terima kasih.</div><div class="flex-grow-1"><br></div><div class="flex flex-row"><div class="flex-grow-1"><br></div><div class="flex flex-col flex-grow-0 text-center"><div class="flex-grow-0">Hormat saya,</div><div class="flex-grow-1 h-75 p-relative"><img src="'+i['tanda tangan']+'" alt=""><br></div><div class="flex-grow-0">'+i['nama']+'</div></div></div><div class="flex-grow-0 h-50"><br></div>';
+                },
+            ],
         },
     });
-    form.set( 'f-d',
+    const form_default  = form.set( 'f-d',
         {
             inputs          : {
                 name        : {
