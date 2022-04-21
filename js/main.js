@@ -139,5 +139,6 @@ jQuery(document).ready(function( $ ) {
     page_switcher.set('launch-timeline');
     page_switcher.set('page-default-2');
     page_switcher.set('page-default-3');
+    page_switcher.set('page-default-4');
     page_switcher.focus('main');
 });
