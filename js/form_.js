@@ -2,6 +2,18 @@
 
 (()=>{
     const factory           = {
+        setErrorForm        : e=>{
+            $(e).addClass('border-danger');
+        },
+        unsetErrorForm      : e=>{
+            $(e).removeClass('border-danger');
+        },
+        setDefaultDate      : ()=>{
+            const df        = new Date();
+            return          df.getFullYear() + '-'
+                            + (()=>{const m = df.getMonth();if (m < 10) return '0' + m;return '' + m;})() + '-'
+                            + (()=>{const d = df.getDate();if (d < 10) return '0' + d;return '' + d;})();
+        },
         validation          : {
             text            : i=>{
                 const e     = i.ui;
@@ -12,6 +24,7 @@
                     if (pass)
                         i.val   = e.value;
                     i.pass      = pass;
+                    factory.unsetErrorForm(e);
                 });
             },
             phone           : i=>{
@@ -21,8 +34,14 @@
                     const tmp       = e.value.replaceAll(/[ \-]+/g, '');
                     const pass      = /^[\d]+$/m.exec(tmp) != null && (tmp.length > 8 && tmp.length < 15);
 
-                    if (pass)
+                    if (pass) {
                         i.val       = e.value;
+                        factory.unsetErrorForm(e);
+                    }
+                    else if (e.value === '')
+                        factory.unsetErrorForm(e);
+                    else
+                        factory.setErrorForm(e);
                     i.pass          = pass;
                 });
             },
@@ -47,6 +66,7 @@
 
                     if (file !== undefined)
                         reader.readAsDataURL(file);
+                    factory.unsetErrorForm(e);
                 });
                 reader.addEventListener('load', ()=>{
                     i.val           = reader.result;
@@ -54,6 +74,15 @@
                     e_prv_img[0].setAttribute('src', reader.result);
                     e_prv_ctr.removeClass('d-none');
                     e_ui_ctr.addClass('d-none');
+                });
+            },
+            date            : i=>{
+                const d     = factory.setDefaultDate();
+                i.pass      = true;
+                i.ui.value  = d;
+                i.val       = d;
+                $(i.ui).change(()=>{
+                    i.val   = i.ui.value;
                 });
             },
             none            : i=>{
@@ -217,15 +246,35 @@
                     x.forEach(i=>{
                         if (i.custom)
                             customs.push(i);
-                        else {
+                        else if (i.type !== 'date') {
                             i.val   = '';
                             i.pass  = i.type === 'none';
+                            if (i.type === 'image')
+                                i.prv.del.click();
+                            factory.unsetErrorForm(i.ui);
                         }
+                        else
+                            i.ui.value = factory.setDefaultDate();
 
                     });
                     customs.forEach(e=>{
                         x.remInput(id + '-' + e.id);
                     });
+                };
+                x.checkError    = (callSuccess=()=>{}, callFail=()=>{})=>{
+                    let pass    = true;
+                    x.forEach(i=>{
+                        if (i.pass)
+                            factory.unsetErrorForm(i.ui);
+                        else {
+                            pass = false;
+                            factory.setErrorForm(i.ui);
+                        }
+                    });
+                    if (pass)
+                        callSuccess(x);
+                    else
+                        callFail(x);
                 };
                 x.getData       = ()=>{
                     const out   = {};
