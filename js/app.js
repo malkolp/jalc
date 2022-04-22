@@ -1,6 +1,10 @@
 // noinspection JSUnresolvedFunction,JSCheckFunctionSignatures
 
 (()=>{
+    //constant object control
+    const forms     = {};
+    const templates = {};
+
     //init required components
     switches_.set({
         id      : 'education',
@@ -65,17 +69,39 @@
         page_switcher.focus('page-default-3');
     });
     $('#f-d-act-generate').click(()=>{
-        gen_def.generate(form_default.getData());
-        setTimeout(()=>{
-            gen_def.print();
-        },500);
+        page_switcher.focus('page-default-4');
     });
-    const gen_def       = generator_.setTemplate({
-        id          : 'f-d',
+    $('#f-d-act-prev-3').click(()=>{
+        page_switcher.focus('page-default-3');
+    });
+
+    //generate
+    $('[data-gen-template]').click(e=>{
+        let tmp, frm, x, y;
+        let tar     = e.target;
+
+        while (tar.nodeName !== 'DIV')
+            tar     = tar.parentNode;
+        x           = tar.getAttribute('data-gen-template');
+        y           = tar.getAttribute('data-form');
+
+        if (x !== null && y !== null) {
+            tmp     = templates[x];
+            frm     = forms[y];
+
+            tmp.generate(frm.getData());
+            setTimeout(()=>{
+                tmp.print();
+            }, 500);
+        }
+    });
+
+    templates['f_d_simple']     = generator_.setTemplate({
+        id          : 'f-d-sim',
         tpl         : {
             font            : {
-                link        : '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">',
-                name        : 'Raleway',
+                link        : '',
+                name        : 'Times New Roman',
             },
             replacements    : [
                 {
@@ -129,7 +155,62 @@
             ],
         },
     });
-    const form_default  = form.set( 'f-d',
+    templates['f_d_sidebar']    = generator_.setTemplate({
+        id          : 'f-d-sid',
+        tpl         : {
+            font            : {
+                link        : '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">',
+                name        : 'Raleway',
+            },
+            replacements    : [
+                {
+                    input   : 'pendidikan terakhir',
+                    replace : x=>{
+                        return switches_.switches['education'](x);
+                    },
+                }
+            ],
+            joins           : [
+                {
+                    inputs  : ['tempat', 'tanggal lahir'],
+                    pattern : '##0##, ##1##',
+                    label   : ['tempat/ tanggal lahir'],
+                },
+                {
+                    inputs  : ['tempat pengajuan', 'tanggal pengajuan'],
+                    pattern : '##0##, ##1##',
+                    label   : ['tempat/ tanggal pengajuan'],
+                },
+                {
+                    inputs  : ['pendidikan terakhir', 'jurusan'],
+                    pattern : '##0##/ ##1##',
+                    label   : ['pendidikan'],
+                },
+            ],
+            grouping        : [
+                {
+                    group   : 'cst-profile',
+                    trans   : v=>{
+                        return '<div class="flex-grow-0 fw-medium mb-0-5">'+v+'</div>';
+                    },
+                },
+                {
+                    group   : 'attachment',
+                    trans   : v=>{
+                        return '<li>'+v+'</li>';
+                    },
+                },
+            ],
+            template        : [
+                (i, g)=>{
+                    console.log(i);
+                    return '<div class="flex flex-grow-1 flex-row line-1-75"><div class="flex-grow-0 w-25 pr-2 pl-1 br-1 b-secondary"><h1 class="flex-grow-0 font-32 line-3-5 fw-black text-capitalize text-dark">surat<br>lamaran<br>kerja</h1><div class="flex-grow-0"><br><br></div><div class="flex-grow-0 fw-medium mb-2">Kepada :</div><div class="flex-grow-0"><span class="fw-bolder text-capitalize">Pimpinan '+i['nama perusahaan']+'</span></div><div class="flex-grow-0"><br><br></div><div class="flex-grow-0 fw-medium mb-2">Dari :</div><div class="flex-grow-0 mb-0-5"><span class=" fw-bolder text-capitalize">'+i['nama']+'</span><span class="fw-medium">,</span></div><div class="flex-grow-0 fw-medium text-capitalize mb-0-5">'+i['tempat/ tanggal lahir']+',</div><div class="flex-grow-0 fw-medium text-capitalize mb-0-5">'+i['alamat']+',</div><div class="flex-grow-0 fw-medium mb-0-5">'+i['pendidikan']+',</div><div class="flex-grow-0 fw-medium text-capitalize mb-0-5">'+i['nomor telepon']+'.</div>'+g['cst-profile']+'</div><div class="flex flex-grow-1 pr-1 pl-2 flex-col"><div class="flex flex-grow-0 flex-row"><div class="flex-grow-1"><br></div><div class="flex flex-grow-0 flex-col text-right fw-medium"><div class="text-capitalize mb-0-5">'+i['tempat/ tanggal pengajuan']+'</div><div class="text-capitalize mb-0-5">hal: lamaran pekerjaan</div></div></div><div class="flex-grow-1"><br></div><div class="flex-grow-0 fw-medium mb-1">Dengan Hormat</div><div class="flex-grow-0 mb-0-5"><p class="text-justify fw-medium">Dengan ini saya mengajukan surat lamaran pekerjaan kepada Bapak/Ibu Pimpinan PT. '+i['nama perusahaan']+' untuk dapat diterima menjadi staff '+i['posisi']+' di perusahaan yang Bapak/Ibu pimpin.<br>Sebagai bahan pertimbangan bersama ini saya lampirkan :</p></div><div class="flex-grow-0 mb-0-5"><ol class="pl-1 fw-medium">'+g['attachment']+'</ol></div><div class="flex-grow-0 mb-0-5"><p class="text-justify fw-medium">Demikian surat yang saya buat, besar harapan saya untuk dapat diterima di Perusahaan ini. Atasperhatian Bapak/Ibu pimpinan berikut, saya ucapkan banyak terima kasih.</p></div><div class="flex-grow-1"><br></div><div class="flex flex-row fw-medium"><div class="flex-grow-1"><br></div><div class="flex flex-col flex-grow-0 text-center"><div class="flex-grow-0">Hormat saya,</div><div class="flex-grow-1 h-75 p-relative"><img class="h-75" src="'+i['signature']+'" alt=""><br></div><div class="flex-grow-0">'+i['nama']+'</div></div></div><div class="flex-grow-1"><br></div></div></div>';
+                },
+            ],
+        },
+    });
+
+    forms['default']            = form.set( 'f-d',
         {
             inputs          : {
                 name        : {
