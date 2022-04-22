@@ -12,13 +12,13 @@
         warning     : msg=>{
             notify_.n.showToast({
                 text    : msg,
-                type    : 'warning',
+                type    : 'error',
             });
         },
         danger      : msg=>{
             notify_.n.showToast({
                 text    : msg,
-                type    : 'danger',
+                type    : 'warning',
             });
         },
     };
