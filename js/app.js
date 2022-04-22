@@ -89,10 +89,14 @@
             tmp     = templates[x];
             frm     = forms[y];
 
-            tmp.generate(frm.getData());
-            setTimeout(()=>{
-                tmp.print();
-            }, 500);
+            frm.checkError(f=>{
+                tmp.generate(f.getData());
+                setTimeout(()=>{
+                   tmp.print();
+                });
+            }, ()=>{
+                notify_.danger('form has empty or invalid value');
+            });
         }
     });
 
@@ -235,7 +239,7 @@
                     label   : 'tanggal lahir',
                     ui      : $('#f-d-dateOfBirth')[0],
                     type    : 'date',
-                    valid   : 'none',
+                    valid   : 'date',
                 },
                 gender      : {
                     id      : 'gender',
@@ -307,7 +311,7 @@
                     label   : 'tanggal pengajuan',
                     ui      : $('#f-d-dateOfApply')[0],
                     type    : 'date',
-                    valid   : 'none',
+                    valid   : 'date',
                 },
                 signature   : {
                     id      : 'signature',
